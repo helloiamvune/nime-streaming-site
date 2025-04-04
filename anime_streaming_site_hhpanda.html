@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Streaming - HHPanda</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.3.0/video-js.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.3.0/video.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: white;
+        }
+        .search-bar button {
+            padding: 10px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .anime-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+        .anime-item {
+            width: 200px;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .anime-item img {
+            width: 100%;
+            height: auto;
+        }
+        .anime-item .anime-title {
+            padding: 10px;
+            background-color: #222;
+            color: #ffcc00;
+            text-align: center;
+        }
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .video-js {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .comments {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .comment-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .comment {
+            background-color: #444;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .comment-button {
+            padding: 10px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Anime Streaming - HHPanda</h1>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Tìm kiếm anime...">
+            <button onclick="searchAnime()">Tìm kiếm</button>
+        </div>
+    </div>
+
+    <div class="anime-list">
+        <div class="anime-item">
+            <img src="https://via.placeholder.com/200x300?text=One+Piece" alt="One Piece">
+            <div class="anime-title">One Piece</div>
+        </div>
+        <div class="anime-item">
+            <img src="https://via.placeholder.com/200x300?text=Naruto" alt="Naruto">
+            <div class="anime-title">Naruto Shippuden</div>
+        </div>
+        <div class="anime-item">
+            <img src="https://via.placeholder.com/200x300?text=Attack+on+Titan" alt="Attack on Titan">
+            <div class="anime-title">Attack on Titan</div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <video id="anime-player" class="video-js vjs-default-skin" controls>
+            <source id="video-source" src="https://yourcdn.com/anime-episode.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="comments">
+        <h3>Bình luận</h3>
+        <div class="comment-list" id="comment-list"></div>
+        <input type="text" id="comment-input" class="comment-input" placeholder="Nhập bình luận...">
+        <button onclick="addComment()" class="comment-button">Gửi</button>
+    </div>
+
+    <script>
+        function searchAnime() {
+            var input = document.getElementById('search').value.toLowerCase();
+            var items = document.querySelectorAll('.anime-item');
+            items.forEach(item => {
+                var title = item.querySelector('.anime-title').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function addComment() {
+            var commentInput = document.getElementById('comment-input');
+            var commentText = commentInput.value.trim();
+            if (commentText) {
+                var commentList = document.getElementById('comment-list');
+                var commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = commentText;
+                commentList.appendChild(commentDiv);
+                commentInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>

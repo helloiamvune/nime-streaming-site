@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Streaming - Thế Giới Hoàn Mỹ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .comments {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .comment-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .comment {
+            background-color: #444;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .comment-button {
+            padding: 10px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Anime Streaming - Thế Giới Hoàn Mỹ</h1>
+    </div>
+
+    <div class="video-container">
+        <iframe width="80%" height="480" src="https://www.dailymotion.com/embed/video/x9h6nzk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="comments">
+        <h3>Bình luận</h3>
+        <div class="comment-list" id="comment-list"></div>
+        <input type="text" id="comment-input" class="comment-input" placeholder="Nhập bình luận...">
+        <button onclick="addComment()" class="comment-button">Gửi</button>
+    </div>
+
+    <script>
+        function addComment() {
+            var commentInput = document.getElementById('comment-input');
+            var commentText = commentInput.value.trim();
+            if (commentText) {
+                var commentList = document.getElementById('comment-list');
+                var commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = commentText;
+                commentList.appendChild(commentDiv);
+                commentInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>
